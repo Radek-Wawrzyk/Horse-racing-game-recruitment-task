@@ -1,16 +1,26 @@
+<script setup lang="ts">
+import Card from 'primevue/card';
+</script>
+
 <template>
-  <div class="app-layout">
-    <aside class="app-layout__sidebar app-layout__sidebar--left">
-      <slot name="left-sidebar" />
-    </aside>
+  <div class="app-layout container">
+    <Card class="app-layout__sidebar app-layout__sidebar--left">
+      <template #content>
+        <slot name="left-sidebar" />
+      </template>
+    </Card>
 
-    <main class="app-layout__main">
-      <slot name="main" />
-    </main>
+    <Card class="app-layout__main">
+      <template #content>
+        <slot name="main" />
+      </template>
+    </Card>
 
-    <aside class="app-layout__sidebar app-layout__sidebar--right">
-      <slot name="right-sidebar-right" />
-    </aside>
+    <Card class="app-layout__sidebar app-layout__sidebar--right">
+      <template #content>
+        <slot name="right-sidebar-right" />
+      </template>
+    </Card>
   </div>
 </template>
 

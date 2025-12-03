@@ -4,5 +4,14 @@
     "pause": "Pause",
     "generate": "Generate Program",
     "app-name": "Horse Racing Game"
+  },
+  "horses": {
+    "list-title": "Horse List"
+  },
+  "race": {
+    "program-title": "Program",
+    "results-title": "Results",
+    "lap": "lap",
+    "generate-and-start": "Generate program and start race"
   }
 }

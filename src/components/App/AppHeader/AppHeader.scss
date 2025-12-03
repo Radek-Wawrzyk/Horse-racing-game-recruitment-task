@@ -1,0 +1,17 @@
+.app-header {
+  height: 64px;
+  box-shadow: var(--p-card-shadow);
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
