@@ -24,3 +24,15 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .race-header {
+    height: auto;
+
+    &__container {
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+}

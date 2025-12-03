@@ -56,3 +56,41 @@
     border-radius: var(--p-panel-border-radius);
   }
 }
+
+@media (max-width: 1024px) {
+  .race-layout {
+    height: auto;
+
+    &__header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--p-neutral-50);
+    }
+
+    &__content {
+      height: auto;
+      margin: 2rem auto;
+      padding: 0 1rem 2rem 1rem;
+      flex-direction: column;
+      overflow: unset;
+    }
+
+    &__sidebar {
+      max-height: 576px;
+
+      &--left {
+        order: 1;
+      }
+
+      &--right {
+        min-width: auto;
+      }
+    }
+
+    &__main {
+      height: 576px;
+      flex: unset;
+    }
+  }
+}
