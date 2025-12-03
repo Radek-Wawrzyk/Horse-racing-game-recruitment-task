@@ -9,12 +9,10 @@ const raceStore = useRaceStore();
 
 <template>
   <div class="race-horse-list">
-    <h2 class="race-horse-list__title">{{ $t('horses.list-title') }} (1-20)</h2>
-
     <DataTable :value="raceStore.horses" size="small">
-      <Column field="name" header="Name" />
-      <Column field="condition" header="Condition" />
-      <Column field="color" header="Color">
+      <Column field="name" :header="$t('race.name')" />
+      <Column field="condition" :header="$t('race.condition')" />
+      <Column field="color" :header="$t('race.color')">
         <template #body="slotProps">
           <div class="race-horse-list__color" :style="{ backgroundColor: slotProps.data.color }" />
         </template>

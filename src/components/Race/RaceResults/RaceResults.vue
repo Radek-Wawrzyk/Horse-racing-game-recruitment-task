@@ -12,6 +12,14 @@ const getHorsesWithPosition = (horses: RaceHorse[]) => {
     position: index + 1,
   }));
 };
+
+const getPositionDisplay = (position: number): string => {
+  if (position === 1) return `${position}🥇`;
+  if (position === 2) return `${position}🥈`;
+  if (position === 3) return `${position}🥉`;
+
+  return position.toString();
+};
 </script>
 
 <template>
@@ -26,8 +34,8 @@ const getHorsesWithPosition = (horses: RaceHorse[]) => {
           </h3>
 
           <DataTable :value="getHorsesWithPosition(round.horses)" size="small">
-            <Column field="position" header="Position" />
-            <Column field="name" header="Name" />
+            <Column field="position" :header="$t('race.lane-position')" />
+            <Column field="name" :header="$t('race.name')" />
           </DataTable>
         </div>
       </div>
@@ -46,8 +54,14 @@ const getHorsesWithPosition = (horses: RaceHorse[]) => {
               :value="round.results ? getHorsesWithPosition(round.results) : []"
               size="small"
             >
-              <Column field="position" header="Position" />
-              <Column field="name" header="Name" />
+              <Column field="position" :header="$t('race.position')">
+                <template #body="{ data }">
+                  <span class="race-results__position-display">{{
+                    getPositionDisplay(data.position)
+                  }}</span>
+                </template>
+              </Column>
+              <Column field="name" :header="$t('race.name')" />
             </DataTable>
           </template>
         </div>

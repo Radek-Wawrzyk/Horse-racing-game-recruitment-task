@@ -1,6 +1,7 @@
 .race-header {
   height: 64px;
   box-shadow: var(--p-card-shadow);
+  border-bottom: 1px solid var(--p-neutral-200);
 
   &__container {
     display: flex;

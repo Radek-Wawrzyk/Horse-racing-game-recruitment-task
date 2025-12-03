@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import Card from 'primevue/card';
+import Panel from 'primevue/panel';
+
+defineProps<{
+  leftSidebarHeader?: string;
+  rightSidebarHeader?: string;
+}>();
 </script>
 
 <template>
@@ -9,21 +14,17 @@ import Card from 'primevue/card';
     </header>
 
     <div class="race-layout__content">
-      <Card class="race-layout__sidebar race-layout__sidebar--left">
-        <template #content>
-          <slot name="left-sidebar" />
-        </template>
-      </Card>
+      <Panel class="race-layout__sidebar race-layout__sidebar--left" :header="leftSidebarHeader">
+        <slot name="left-sidebar" />
+      </Panel>
 
       <div class="race-layout__main">
         <slot name="main" />
       </div>
 
-      <Card class="race-layout__sidebar race-layout__sidebar--right">
-        <template #content>
-          <slot name="right-sidebar-right" />
-        </template>
-      </Card>
+      <Panel class="race-layout__sidebar race-layout__sidebar--right" :header="rightSidebarHeader">
+        <slot name="right-sidebar-right" />
+      </Panel>
     </div>
 
     <footer class="race-layout__actions">

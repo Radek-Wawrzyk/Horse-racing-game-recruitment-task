@@ -9,6 +9,5 @@ const logger = createConsola({
 });
 
 const raceStoreLogger = logger.withTag('race');
-const raceSimulationLogger = logger.withTag('race-simulation');
 
-export { raceStoreLogger, raceSimulationLogger };
+export { raceStoreLogger };

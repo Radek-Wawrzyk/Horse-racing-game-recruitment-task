@@ -49,11 +49,15 @@ const COLORS = [
 
 const useHorseGenerator = () => {
   const generateRandomHorses = (count = RACE_HORSES_COUNT): RaceHorse[] => {
+    // INFO: Shuffle names and colors to make each generation random
+    const shuffledNames = [...HORSE_NAMES].sort(() => Math.random() - 0.5);
+    const shuffledColors = [...COLORS].sort(() => Math.random() - 0.5);
+
     return Array.from({ length: count }, (_, index) => ({
       id: index + 1,
-      name: HORSE_NAMES[index] || '',
+      name: shuffledNames[index] || `Horse ${index + 1}`,
       condition: Math.floor(Math.random() * 100) + 1,
-      color: COLORS[index] || '',
+      color: shuffledColors[index] || '#000000',
     }));
   };
 

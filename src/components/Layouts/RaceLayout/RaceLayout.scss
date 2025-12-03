@@ -26,12 +26,33 @@
 
     &--right {
       min-width: 480px;
+
+      &:deep(.p-panel-header) {
+        margin-bottom: 0 !important;
+      }
+
+      &:deep(.p-panel-content) {
+        padding: 0 !important;
+      }
+    }
+
+    &:deep(.p-panel-header) {
+      border-bottom: 1px solid var(--p-panel-border-color);
+      margin-bottom: 1rem;
+      position: sticky;
+      top: 0;
+      background-color: var(--p-neutral-50);
+      z-index: 1;
+    }
+
+    &:deep(.p-panel-content) {
+      padding: 0 1rem;
     }
   }
 
   &__main {
     flex: 1;
     width: 100%;
-    padding: 1rem;
+    border-radius: var(--p-panel-border-radius);
   }
 }

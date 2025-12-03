@@ -7,6 +7,7 @@ import { RACE_ROUNDS_BREAK_INTERVAL } from '@/constants/Race';
 import { raceStoreLogger } from '@/utils/logger';
 import { useToast } from 'primevue/usetoast';
 import { useI18n } from 'vue-i18n';
+import roundFinishSound from '@/assets/round-finish.mp3';
 
 import type { RaceHorse } from '@/types/Race';
 import type { RaceRound, RaceHorsePosition } from '@/types/Race';
@@ -34,6 +35,18 @@ export const useRaceStore = defineStore('race', () => {
   const activeRaceHorses = ref<RaceHorsePosition[]>([]);
 
   let nextRoundTimeoutId: ReturnType<typeof setTimeout> | null = null;
+  const roundFinishAudio = new Audio(roundFinishSound);
+
+  const playRoundFinishSound = () => {
+    try {
+      roundFinishAudio.currentTime = 0;
+      roundFinishAudio.play().catch((error) => {
+        raceStoreLogger.info('Failed to play round finish sound', { error });
+      });
+    } catch (error) {
+      raceStoreLogger.info('Error playing round finish sound', { error });
+    }
+  };
 
   const currentRound = computed(() => {
     if (currentRoundIndex.value === null) return null;
@@ -170,6 +183,16 @@ export const useRaceStore = defineStore('race', () => {
     });
   };
 
+  const restartRace = () => {
+    raceStoreLogger.info('Restarting Race');
+    stopRace();
+    stopSimulation();
+    raceProgram.value = [];
+    currentRoundIndex.value = null;
+    activeRaceHorses.value = [];
+    horses.value = generateRandomHorses();
+  };
+
   const init = () => {
     raceStoreLogger.info('Init');
     horses.value = generateRandomHorses();
@@ -188,6 +211,7 @@ export const useRaceStore = defineStore('race', () => {
 
       if (isFinished && currentRound.value && currentRoundIndex.value !== null) {
         saveRoundResults();
+        playRoundFinishSound();
         scheduleNextRound();
       }
     },
@@ -255,6 +279,7 @@ export const useRaceStore = defineStore('race', () => {
     resumeRace,
     stopRace,
     finishRace,
+    restartRace,
     init,
     cleanup,
   };

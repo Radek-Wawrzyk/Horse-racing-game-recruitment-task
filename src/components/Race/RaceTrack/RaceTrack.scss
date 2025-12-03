@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: #f0f0f0;
+  background-color: var(--p-neutral-50);
   position: relative;
 
   &__content {
@@ -16,32 +16,49 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
-    font-size: 1.2rem;
+
+    &-text {
+      color: var(--p-stone-700);
+      font-size: 1rem;
+    }
   }
 
   &__lanes {
     display: flex;
     flex-direction: column;
-    background-color: #4caf50;
-    padding: 0.5rem;
+    background-color: var(--p-emerald-700);
     min-width: 50px;
     justify-content: space-between;
   }
 
   &__lane-number {
-    color: white;
-    font-weight: bold;
+    font-weight: 500;
     text-align: center;
-    padding: 0.5rem 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-90deg);
+    font-size: 1rem;
+    flex-direction: column;
+    gap: 0.1rem;
+
+    &-start-position {
+      color: var(--p-white);
+      font-size: 1.2rem;
+    }
+
+    &-hourse-name {
+      color: var(--p-white);
+      font-size: 0.8rem;
+    }
   }
 
   &__track-area {
     flex: 1;
     position: relative;
-    background-color: #e8e8e8;
-    margin: 0.5rem;
-    border: 2px solid #ccc;
+    background-color: var(--p-neutral-100);
+    border: 1px solid var(--p-neutral-200);
   }
 
   &__lane-line {
@@ -49,27 +66,29 @@
     left: 0;
     right: 0;
     height: 1px;
-    border-top: 2px dashed #999;
+    border-top: 2px dashed var(--p-stone-400);
     pointer-events: none;
   }
 
   &__horse {
     position: absolute;
-    transform: translateX(-50%);
-    transition: left 0.1s linear;
+    transform: translate(-50%, -50%);
+    transition: left 0.05s linear;
     z-index: 10;
+    will-change: left;
   }
 
   &__horse-icon {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    border: 2px solid #333;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--p-neutral-600);
+    box-shadow: 0 2px 4px var(--p-black-500);
+    cursor: pointer;
   }
 
   &__finish-line {
@@ -78,16 +97,18 @@
     top: 0;
     bottom: 0;
     width: 4px;
-    background-color: #e74c3c;
+    background-color: var(--p-red-600);
     z-index: 5;
+    height: calc(100% + 48px);
   }
 
   &__footer {
     display: flex;
     justify-content: space-between;
     padding: 0.75rem 1rem;
-    background-color: #f5f5f5;
-    border-top: 2px solid #ddd;
+    background-color: var(--p-neutral-50);
+    border-top: 1px solid var(--p-neutral-200);
+    height: 48px;
   }
 
   &__lap-label {
@@ -96,7 +117,6 @@
 
   &__finish-label {
     font-weight: bold;
-    color: #e74c3c;
+    color: var(--p-red-500);
   }
 }
-

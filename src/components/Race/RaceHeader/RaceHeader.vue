@@ -77,6 +77,15 @@ const raceControlTooltip = computed(() => {
           :disabled="!raceStore.hasProgram && !raceStore.isRacing"
           v-tooltip.bottom="raceControlTooltip"
         />
+
+        <Button
+          @click="raceStore.restartRace"
+          severity="secondary"
+          variant="outlined"
+          icon="pi pi-refresh"
+          :label="t('common.restart')"
+          :disabled="!raceStore.hasProgram && !raceStore.isRacing"
+        />
       </div>
     </div>
   </header>

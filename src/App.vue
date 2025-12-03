@@ -16,7 +16,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <RaceLayout>
+  <RaceLayout
+    :left-sidebar-header="`${$t('race.horses-list-title')} (1-20)`"
+    :right-sidebar-header="`${$t('race.results-list-title')}`"
+  >
     <template #header>
       <RaceHeader />
     </template>

@@ -17,16 +17,38 @@ const useRaceSimulation = () => {
   let animationFrameId: number | null = null;
   let startTime: number = 0;
   let lastUpdateTime: number = 0;
+  const horseMomentum = new Map<number, number>();
 
   // INFO: Speed is calculated based on the horse's condition, the higher the condition, the faster the horse
-  const calculateHorseSpeed = (condition: number): number => {
-    // INFO: Base speed in m/s (range 8-12 m/s)
-    const baseSpeed = 8 + (condition / 100) * 4;
-    const randomness = 10 + (Math.random() - 0.5) * 0.2;
-    return baseSpeed * randomness;
+  // INFO: Added significant randomness to make races more unpredictable
+  const calculateHorseSpeed = (condition: number, horseId: number): number => {
+    // INFO: Base speed in m/s (range 50-100 m/s) - very fast for exciting races
+    const baseSpeed = 80 + (condition / 100) * 50;
+
+    // INFO: Momentum changes randomly over time (0.85-1.15) to simulate form fluctuations
+    if (!horseMomentum.has(horseId)) {
+      horseMomentum.set(horseId, 0.85 + Math.random() * 0.3);
+    } else {
+      // INFO: Momentum can change slightly each update (5% chance to change)
+      if (Math.random() < 0.05) {
+        const currentMomentum = horseMomentum.get(horseId) || 1;
+        const change = (Math.random() - 0.5) * 0.1;
+        horseMomentum.set(horseId, Math.max(0.7, Math.min(1.3, currentMomentum + change)));
+      }
+    }
+
+    const momentum = horseMomentum.get(horseId) || 1;
+
+    // INFO: Additional per-update randomness (0.9-1.1) for more unpredictability
+    const instantRandomness = 0.9 + Math.random() * 0.2;
+
+    return baseSpeed * momentum * instantRandomness;
   };
 
   const initializePositions = (horses: RaceHorse[]) => {
+    // INFO: Reset momentum for new race
+    horseMomentum.clear();
+
     positions.value = horses.map((horse, index) => ({
       horse,
       position: index + 1,
@@ -48,7 +70,7 @@ const useRaceSimulation = () => {
       }
 
       allFinished = false;
-      const speed = calculateHorseSpeed(pos.horse.condition);
+      const speed = calculateHorseSpeed(pos.horse.condition, pos.horse.id);
       const newDistance = pos.distance + (speed * deltaTime) / 1000; // INFO: deltaTime in ms, so we divide by 1000
       const newProgress = Math.min((newDistance / totalDistance) * 100, 100);
       const finalDistance = Math.min(newDistance, totalDistance);
@@ -80,7 +102,7 @@ const useRaceSimulation = () => {
     startTime = performance.now();
     lastUpdateTime = startTime;
 
-    const updateInterval = config.updateInterval || 50;
+    const updateInterval = config.updateInterval || 16;
 
     const animate = (currentTime: number) => {
       if (!isRunning.value) {
@@ -151,6 +173,7 @@ const useRaceSimulation = () => {
     isRunning.value = false;
     isFinished.value = false;
     currentConfig.value = null;
+    horseMomentum.clear();
 
     if (animationFrameId) {
       cancelAnimationFrame(animationFrameId);
