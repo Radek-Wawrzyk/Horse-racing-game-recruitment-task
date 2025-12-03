@@ -1,0 +1,8 @@
+{
+  "common": {
+    "start": "Start",
+    "pause": "Pause",
+    "generate": "Generate Program",
+    "app-name": "Horse Racing Game"
+  }
+}
