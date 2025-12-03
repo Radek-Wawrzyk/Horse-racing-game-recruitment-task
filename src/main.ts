@@ -2,6 +2,7 @@ import App from './App.vue';
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
 import Tooltip from 'primevue/tooltip';
+import ToastService from 'primevue/toastservice';
 
 import './styles/main.scss';
 
@@ -21,6 +22,7 @@ app.use(PrimeVue, {
     },
   },
 });
+app.use(ToastService);
 
 app.directive('tooltip', Tooltip);
 app.mount('#app');

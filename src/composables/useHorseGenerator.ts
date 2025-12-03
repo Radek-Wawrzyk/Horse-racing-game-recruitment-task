@@ -1,5 +1,5 @@
-import type { Horse } from '@/types/Hourse';
-import { HORSE_COUNT, HOURSE_ROUND_COUNT } from '@/constants/Hourse';
+import type { RaceHorse } from '@/types/Race';
+import { RACE_HORSES_COUNT, RACE_HORSES_PER_ROUND } from '@/constants/Race';
 
 const HORSE_NAMES = [
   'Thunder',
@@ -25,30 +25,30 @@ const HORSE_NAMES = [
 ];
 
 const COLORS = [
-  '#FF6B6B',
-  '#4ECDC4',
-  '#45B7D1',
-  '#FFA07A',
-  '#98D8C8',
-  '#F7DC6F',
-  '#BB8FCE',
-  '#85C1E2',
-  '#F8B500',
-  '#FF85A2',
-  '#5DADE2',
-  '#58D68D',
-  '#EC7063',
-  '#AF7AC5',
-  '#F39C12',
-  '#3498DB',
-  '#1ABC9C',
   '#E74C3C',
+  '#3498DB',
+  '#2ECC71',
+  '#F39C12',
   '#9B59B6',
-  '#F1C40F',
+  '#1ABC9C',
+  '#E67E22',
+  '#34495E',
+  '#E91E63',
+  '#00BCD4',
+  '#607D8B',
+  '#8E44AD',
+  '#27AE60',
+  '#D35400',
+  '#2C3E50',
+  '#C0392B',
+  '#16A085',
+  '#7F8C8D',
+  '#2980B9',
+  '#212121',
 ];
 
 const useHorseGenerator = () => {
-  const generateHorses = (count = HORSE_COUNT): Horse[] => {
+  const generateRandomHorses = (count = RACE_HORSES_COUNT): RaceHorse[] => {
     return Array.from({ length: count }, (_, index) => ({
       id: index + 1,
       name: HORSE_NAMES[index] || '',
@@ -57,12 +57,12 @@ const useHorseGenerator = () => {
     }));
   };
 
-  const getRandomHorses = (count = HOURSE_ROUND_COUNT, horses: Horse[]): Horse[] => {
+  const getRandomHorses = (count = RACE_HORSES_PER_ROUND, horses: RaceHorse[]): RaceHorse[] => {
     return [...horses].sort(() => Math.random() - 0.5).slice(0, count);
   };
 
   return {
-    generateHorses,
+    generateRandomHorses,
     getRandomHorses,
   };
 };

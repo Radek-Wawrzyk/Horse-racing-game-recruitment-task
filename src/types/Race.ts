@@ -1,19 +1,24 @@
-import type { Horse } from './Hourse';
+interface RaceHorse {
+  id: number;
+  name: string;
+  condition: number;
+  color: string;
+}
 
 interface RaceRound {
   id: number;
   roundNumber: number;
   distance: number;
-  horses: Horse[];
-  results?: Horse[];
+  horses: RaceHorse[];
+  results?: RaceHorse[];
 }
 
 interface RaceHorsePosition {
-  horse: Horse;
+  horse: RaceHorse;
   position: number;
   lane: number;
   progress: number;
   distance: number;
 }
 
-export type { RaceRound, RaceHorsePosition };
+export type { RaceRound, RaceHorsePosition, RaceHorse };

@@ -12,6 +12,11 @@
     "program-title": "Program",
     "results-title": "Results",
     "lap": "lap",
-    "generate-and-start": "Generate program and start race"
+    "generate-and-start": "Generate program and start race",
+    "pause-tooltip": "Pause the race",
+    "start-tooltip": "Start the race",
+    "disable-tooltip": "Generate program to start the race",
+    "finish-race-summary": "Race finished!",
+    "finish-race-detail": "All rounds completed"
   }
 }

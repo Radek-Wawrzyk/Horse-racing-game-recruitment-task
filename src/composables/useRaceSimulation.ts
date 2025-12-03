@@ -1,10 +1,10 @@
 import { ref, computed } from 'vue';
-import type { Horse } from '@/types/Hourse';
+import type { RaceHorse } from '@/types/Race';
 import type { RaceHorsePosition } from '@/types/Race';
 
 interface SimulationConfig {
   distance: number;
-  horses: Horse[];
+  horses: RaceHorse[];
   updateInterval?: number;
 }
 
@@ -26,7 +26,7 @@ const useRaceSimulation = () => {
     return baseSpeed * randomness;
   };
 
-  const initializePositions = (horses: Horse[]) => {
+  const initializePositions = (horses: RaceHorse[]) => {
     positions.value = horses.map((horse, index) => ({
       horse,
       position: index + 1,
@@ -159,7 +159,7 @@ const useRaceSimulation = () => {
     positions.value = [];
   };
 
-  const getResults = computed(() => {
+  const getRoundResults = computed(() => {
     return [...positions.value]
       .sort((a, b) => {
         if (Math.abs(b.distance - a.distance) < 0.001) {
@@ -174,11 +174,11 @@ const useRaceSimulation = () => {
     positions,
     isRunning,
     isFinished,
+    getRoundResults,
     startSimulation,
     pauseSimulation,
     resumeSimulation,
     stopSimulation,
-    getResults,
   };
 };
 

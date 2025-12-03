@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue';
+import { onUnmounted } from 'vue';
 import { useRaceStore } from '@/stores/useRaceStore';
 
-import AppLayout from '@/components/App/AppLayout/AppLayout.vue';
-import AppHeader from '@/components/App/AppHeader/AppHeader.vue';
-import HorseList from '@/components/App/HorseList/HorseList.vue';
-import RaceTrack from '@/components/App/RaceTrack/RaceTrack.vue';
-import ProgramResults from '@/components/App/ProgramResults/ProgramResults.vue';
+import RaceLayout from '@/components/Layouts/RaceLayout/RaceLayout.vue';
+import RaceHeader from '@/components/Race/RaceHeader/RaceHeader.vue';
+import RaceResults from '@/components/Race/RaceResults/RaceResults.vue';
+import RaceHorseList from '@/components/Race/RaceHorseList/RaceHorseList.vue';
+import RaceTrack from '@/components/Race/RaceTrack/RaceTrack.vue';
 
 const raceStore = useRaceStore();
-
-onMounted(() => {
-  raceStore.init();
-});
 
 onUnmounted(() => {
   raceStore.cleanup();
@@ -20,22 +16,23 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div>
-    <AppHeader />
-    <AppLayout>
-      <template #left-sidebar>
-        <HorseList />
-      </template>
+  <RaceLayout>
+    <template #header>
+      <RaceHeader />
+    </template>
 
-      <template #main>
-        <RaceTrack />
-      </template>
+    <template #left-sidebar>
+      <RaceHorseList />
+    </template>
 
-      <template #right-sidebar-right>
-        <ProgramResults />
-      </template>
-    </AppLayout>
-  </div>
+    <template #main>
+      <RaceTrack />
+    </template>
+
+    <template #right-sidebar-right>
+      <RaceResults />
+    </template>
+  </RaceLayout>
 </template>
 
 <style scoped></style>

@@ -1,0 +1,25 @@
+.race-header {
+  height: 64px;
+  box-shadow: var(--p-card-shadow);
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__control-button {
+    width: 100px;
+
+    &:deep(.p-button-icon) {
+      font-size: 0.8rem;
+    }
+  }
+}

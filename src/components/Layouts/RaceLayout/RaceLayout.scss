@@ -1,0 +1,37 @@
+.race-layout {
+  position: relative;
+  height: 100vh;
+
+  &__header {
+    width: 100%;
+  }
+
+  &__content {
+    margin: 2rem auto 0;
+    display: flex;
+    max-width: 1440px;
+    width: 100%;
+    padding: 0 1rem;
+    gap: 2rem;
+    height: calc(100vh - 2rem - 64px);
+    overflow: hidden;
+  }
+
+  &__sidebar {
+    overflow-y: auto;
+
+    &--left {
+      min-width: 240px;
+    }
+
+    &--right {
+      min-width: 480px;
+    }
+  }
+
+  &__main {
+    flex: 1;
+    width: 100%;
+    padding: 1rem;
+  }
+}
