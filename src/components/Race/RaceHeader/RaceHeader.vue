@@ -59,15 +59,20 @@ const raceControlTooltip = computed(() => {
   <header class="race-header">
     <div class="container race-header__container">
       <div class="race-header__left">
-        <h1 class="race-header__title">{{ t('common.app-name') }}</h1>
+        <h1 data-testid="app-title" class="race-header__title">{{ t('common.app-name') }}</h1>
       </div>
 
       <div class="race-header__actions">
-        <Button @click="raceStore.generateProgram" :disabled="raceStore.isRacing">
+        <Button
+          :pt="{ root: { 'data-testid': 'btn-generate' } }"
+          @click="raceStore.generateProgram"
+          :disabled="raceStore.isRacing"
+        >
           {{ t('common.generate') }}
         </Button>
 
         <Button
+          :pt="{ root: { 'data-testid': 'btn-race-control' } }"
           class="race-header__control-button"
           @click="handleRaceControl"
           severity="secondary"
@@ -79,6 +84,7 @@ const raceControlTooltip = computed(() => {
         />
 
         <Button
+          :pt="{ root: { 'data-testid': 'btn-restart' } }"
           @click="raceStore.restartRace"
           severity="secondary"
           variant="outlined"

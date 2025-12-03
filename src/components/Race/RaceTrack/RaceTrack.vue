@@ -29,8 +29,8 @@ const getHorsePosition = (position: RaceHorsePosition) => {
 </script>
 
 <template>
-  <div class="race-track">
-    <div v-if="raceStore.currentRound" class="race-track__content">
+  <div class="race-track" data-testid="race-track">
+    <div v-if="raceStore.currentRound" class="race-track__content" data-testid="race-track-content">
       <div class="race-track__lanes">
         <div v-for="position in 10" :key="position" class="race-track__lane-number">
           <span class="race-track__lane-number-hourse-name">
@@ -65,7 +65,7 @@ const getHorsePosition = (position: RaceHorsePosition) => {
       <div class="race-track__finish-line" />
     </div>
 
-    <div v-else class="race-track__empty">
+    <div v-else class="race-track__empty" data-testid="race-track-empty">
       <p class="race-track__empty-text">{{ t('race.generate-and-start') }}</p>
     </div>
 

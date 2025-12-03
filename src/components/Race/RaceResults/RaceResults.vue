@@ -23,8 +23,11 @@ const getPositionDisplay = (position: number): string => {
 </script>
 
 <template>
-  <div class="race-results">
-    <div class="race-results__column race-results__column--program">
+  <div class="race-results" data-testid="race-results">
+    <div
+      class="race-results__column race-results__column--program"
+      data-testid="race-results-program"
+    >
       <h2 class="race-results__title">{{ $t('race.program-title') }}</h2>
 
       <div class="race-results__content">
@@ -41,7 +44,10 @@ const getPositionDisplay = (position: number): string => {
       </div>
     </div>
 
-    <div class="race-results__column race-results__column--results">
+    <div
+      class="race-results__column race-results__column--results"
+      data-testid="race-results-results"
+    >
       <h2 class="race-results__title">{{ $t('race.results-title') }}</h2>
       <div class="race-results__content">
         <div v-for="round in raceStore.raceProgram" :key="round.id" class="race-results__round">

@@ -8,7 +8,7 @@ const raceStore = useRaceStore();
 </script>
 
 <template>
-  <div class="race-horse-list">
+  <div class="race-horse-list" data-testid="race-horse-list">
     <DataTable :value="raceStore.horses" size="small">
       <Column field="name" :header="$t('race.name')" />
       <Column field="condition" :header="$t('race.condition')" />
